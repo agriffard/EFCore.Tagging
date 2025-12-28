@@ -95,7 +95,7 @@ public class TaggingMiddleware
     private string GetOrCreateCorrelationId(HttpContext context)
     {
         if (context.Request.Headers.TryGetValue(_options.CorrelationIdHeader, out var correlationId) 
-            && !string.IsNullOrEmpty(correlationId))
+            && !string.IsNullOrWhiteSpace(correlationId))
         {
             return correlationId.ToString();
         }

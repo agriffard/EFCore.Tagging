@@ -45,10 +45,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Add EF Core Tagging middleware - should be before controllers
+// Configure routing first so that endpoint information is available
 app.UseRouting();
 app.UseAuthorization();
 
+// Add EF Core Tagging middleware after routing so controller/action info is available
 app.UseEfCoreTagging();
 
 app.MapControllers();

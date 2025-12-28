@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCore.Tagging;
@@ -7,6 +9,9 @@ namespace EFCore.Tagging;
 /// </summary>
 public static class QueryableExtensions
 {
+    // Cache for property info to avoid repeated reflection
+    private static readonly ConcurrentDictionary<Type, PropertyInfo[]> _propertyCache = new();
+
     /// <summary>
     /// Adds a contextual tag to the query with the specified name and metadata.
     /// </summary>
@@ -21,7 +26,10 @@ public static class QueryableExtensions
 
         if (metadata != null)
         {
-            foreach (var property in metadata.GetType().GetProperties())
+            var metadataType = metadata.GetType();
+            var properties = _propertyCache.GetOrAdd(metadataType, t => t.GetProperties());
+            
+            foreach (var property in properties)
             {
                 var value = property.GetValue(metadata);
                 if (value != null)
