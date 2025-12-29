@@ -1,0 +1,45 @@
+@EFCore.Tagging.Sample_HostAddress = http://localhost:5289
+
+### Get all products (uses TagWithScope from middleware)
+GET {{EFCore.Tagging.Sample_HostAddress}}/api/products
+Accept: application/json
+
+###
+
+### Get products by category (uses TagWithContext with metadata)
+GET {{EFCore.Tagging.Sample_HostAddress}}/api/products/category/Electronics
+Accept: application/json
+
+###
+
+### Get product by ID (uses manual TagScope)
+GET {{EFCore.Tagging.Sample_HostAddress}}/api/products/1
+Accept: application/json
+
+###
+
+### Search products (uses TagWithContext with filter metadata)
+GET {{EFCore.Tagging.Sample_HostAddress}}/api/products/search?name=laptop&minPrice=100
+Accept: application/json
+
+###
+
+### Get all orders (uses TagWithContext)
+GET {{EFCore.Tagging.Sample_HostAddress}}/api/orders
+Accept: application/json
+
+###
+
+### Create order (demonstrates tagging in write operations)
+POST {{EFCore.Tagging.Sample_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+    "customerName": "John Doe",
+    "items": [
+        { "productId": 1, "quantity": 1 },
+        { "productId": 2, "quantity": 2 }
+    ]
+}
+
+###

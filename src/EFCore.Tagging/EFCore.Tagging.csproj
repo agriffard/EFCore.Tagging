@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>EFCore.Tagging</PackageId>
+    <Description>A simple and standardized API to automatically apply TagWith to EF Core queries for improved debugging, observability, and SQL performance analysis.</Description>
+    <Authors>agriffard</Authors>
+    <PackageTags>efcore;entity-framework;tagging;sql;debugging;observability</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>
